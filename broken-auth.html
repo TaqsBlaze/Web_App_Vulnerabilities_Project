@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broken Authentication Simulation</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <h1>Login (Vulnerable)</h1>
+            <p>
+                <strong>WARNING:</strong> This page simulates a broken authentication vulnerability for educational purposes ONLY.
+                The authentication logic is performed client-side and is easily bypassed.
+                DO NOT use this code in a real application.
+            </p>
+            <div class="test-area">
+                <form id="loginForm">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    <button type="submit">Log In</button>
+                </form>
+                <div id="message" style="margin-top: 20px;"></div>
+                <button onclick="window.location.href='vulnerabilities.html';">Back</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('loginForm');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const messageBox = document.getElementById('message');
+
+            loginForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const username = usernameInput.value;
+                const password = passwordInput.value;
+
+                if (username === 'admin' && password === 'password123') {
+                    displayMessage('Login successful! Welcome, admin.', 'green');
+                } else {
+                    displayMessage('Invalid username or password. Please try again.', 'orange');
+                }
+            });
+
+            function displayMessage(message, type) {
+                messageBox.textContent = message;
+                messageBox.style.color = type;
+            }
+        });
+    </script>
+</body>
+</html>
